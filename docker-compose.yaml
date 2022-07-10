@@ -5,10 +5,14 @@ services:
   pyspark:
     image: jupyter/pyspark-notebook:latest
     environment:
+      JUPYTER_TOKEN: "constant_token"
       JUPYTER_ENABLE_LAB: "yes"
+      PYARROW_IGNORE_TIMEZONE : "1"
     ports:
       - "9999:8888"
+      - "10001:4040" 
     volumes:
       - ./data:/home/jovyan/work
 
 # docker run --rm -p 10000:8888 -e JUPYTER_ENABLE_LAB=yes -v "$PWD":/home/jovyan/work jupyter/pyspark-notebook
+# 4040 -> Spark UI
